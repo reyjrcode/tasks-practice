@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // php artisan route:list
 Route::apiResource('tasks',TaskController::class)->only([
-    'index','show'
+    'index','show','store'
 ]);
