@@ -34,4 +34,8 @@ class TaskController extends Controller
         return new TaskResource($task);
         // {{DOMAIN}}/api/tasks/3
     }
+    public function destroy (Request $request, Task $task){
+        $task->delete();
+        return response()->noContent();
+    }
 }
