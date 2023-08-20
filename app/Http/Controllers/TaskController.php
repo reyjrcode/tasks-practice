@@ -21,9 +21,11 @@ class TaskController extends Controller
         // $t = Task::find(1)
         // $t->is_done= true
         // $t->save()
-        
+
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters('is_done')
+            ->defaultSort('-created_at')
+            ->allowedSorts(['title','is_done','created_at'])
             ->paginate();
         return new TaskCollection($tasks);
     }
