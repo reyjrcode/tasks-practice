@@ -24,7 +24,9 @@ class UpdatePorjectRequest extends FormRequest
         return [
             //php artisan make:request UpdateProjectRequest
             'title' => 'sometimes|required|max:255',
-
+            // php artisan tinker
+            // $u = User::find(1)
+            // Task::factory() ->for ($u,'creator')->create()
         ];
     }
 }
