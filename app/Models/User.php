@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -51,5 +52,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Project::class, 'creator_id');
     }
-
+    public function memberships(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, Member::class);
+        // php artisan tinker
+        // $p = Project::factory()->create()
+        // $u = User::factory()->create()
+        // $p->members()->attach([$u->id])
+        // $p->members
+    }
 }
