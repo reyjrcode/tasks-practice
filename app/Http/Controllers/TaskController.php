@@ -14,6 +14,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 class TaskController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class, 'task');
+    }
+
     public function index(Request $request)
     {
         // return new TaskCollection(Task::paginate());
@@ -26,7 +31,7 @@ class TaskController extends Controller
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters('is_done')
             ->defaultSort('-created_at')
-            ->allowedSorts(['title','is_done','created_at'])
+            ->allowedSorts(['title', 'is_done', 'created_at'])
             ->paginate();
         return new TaskCollection($tasks);
     }

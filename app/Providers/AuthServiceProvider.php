@@ -5,6 +5,7 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use App\Models\Project;
 use App\Policies\ProjectPolicy;
+use App\Policies\TaskPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -17,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         //php artisan make:policy ProjectPolicy --model=Project
         Project::class => ProjectPolicy::class,
+        Task::class => TaskPolicy::class,
     ];
 
     /**
