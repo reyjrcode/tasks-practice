@@ -10,9 +10,9 @@ class MembersController extends Controller
 {
     //php artisan make:controller MembersController
     // php artisan route:list
-    // {{DOMAIN}}/api/projects/1/members
+
     public function index(Request $request, Project $project)
-    {
+    { // {{DOMAIN}}/api/projects/1/members
         $members = $project->members;
 
         return new UserCollection($members);
@@ -30,6 +30,17 @@ class MembersController extends Controller
         return new UserCollection($members);
         // php artisan tinker
         // User::factory()->create()
-        
+
+    }
+    public function destroy(Request $request, Project $project, int $member)
+    {
+        abort_if($project->creator_id === $member, 400, 'Cannot remove creator from project.');
+
+        $project->members()->detach([$member]);
+
+        $members = $project->members;
+
+        return new UserCollection($members);
+        // {{DOMAIN}}/api/projects/1/members/1
     }
 }
