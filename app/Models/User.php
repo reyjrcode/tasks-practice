@@ -33,7 +33,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    
+
     /**
      * The attributes that should be cast.
      *
@@ -46,6 +46,10 @@ class User extends Authenticatable
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class, 'creator_id');
+    }
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class, 'creator_id');
     }
 
 }
