@@ -31,11 +31,15 @@ class Project extends Model
     {
         return $this->belongsToMany(User::class, Member::class);
     }
-
-    // protected static function booted(): void
-    // {
-    //     static::addGlobalScope('creator', function (Builder $builder) {
-    //         $builder->where('creator_id', Auth::id());
-    //     });
-    // }
+    protected static function booted(): void
+    {
+        static::addGlobalScope('member', function (Builder $builder) {
+            $builder->whereRelation('members', 'user_id', Auth::id());
+        });
+        // php artisan migrate:fresh
+        // composer dump-autoload
+        // php artisan tinker
+        // $p = Project::factory()->create()
+        // $p -> members
+    }
 }
