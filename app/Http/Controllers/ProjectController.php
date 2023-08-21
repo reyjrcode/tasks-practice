@@ -17,7 +17,10 @@ use Spatie\QueryBuilder\QueryBuilder;
 class ProjectController extends Controller
 {
     //
-
+    public function __construct()
+    {
+        $this->authorizeResource(Project::class, 'project');
+    }
     public function index(Request $request)
     {
         $projects = QueryBuilder::for(Project::class)
@@ -39,8 +42,8 @@ class ProjectController extends Controller
     {
         // return new ProjectResource($project);
         return (new ProjectResource($project))->load('tasks')
-        ->load('tasks')
-        ->load('members');
+            ->load('tasks')
+            ->load('members');
         ;
     }
 
