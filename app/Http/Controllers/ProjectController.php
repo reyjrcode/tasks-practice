@@ -49,4 +49,12 @@ class ProjectController extends Controller
 
         return new ProjectResource($project);
     }
+    public function destroy(Request $request, Project $project)
+    {
+        $project->delete();
+        return response()->noContent();
+        // php artisan tinker
+        // $u = User::factory()->create()
+        // $p = Project::factory()-> for ($u, 'creator')->create()
+    }
 }
