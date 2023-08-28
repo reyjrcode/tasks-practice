@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MembersController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
@@ -34,4 +35,11 @@ Route::middleware('auth:sanctum')->group(function () {
         'store',
         'destroy',
     ]);
+    Route::apiResource('projects.comments', CommentController::class)->only([
+        'index', 'store',
+    ]);
+    Route::apiResource('tasks.comments', CommentController::class)->only([
+        'index', 'store',
+    ]);
+    // php artisan route:list
 });
