@@ -27,7 +27,7 @@ class CommentController extends Controller
     }
 
     public function index(Request $request, Project|Task $model){
-        $comments = $model->comments()->paginate();
+        $comments = $model->comments()->orderByDesc('created_at')->paginate();
 
         return  new CommentCollection($comments);
     }
