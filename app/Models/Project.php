@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,8 +33,9 @@ class Project extends Model
     {
         return $this->belongsToMany(User::class, Member::class);
     }
-    public function comments():MorphMany{
-        return $this->belongsTo(Comment::class,'commentable');
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
     protected static function booted(): void
     {

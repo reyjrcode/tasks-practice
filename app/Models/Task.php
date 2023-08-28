@@ -34,8 +34,9 @@ class Task extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function comments():MorphMany{
-        return $this->belongsTo(Comment::class,'commentable');
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
     protected static function booted(): void
     {
